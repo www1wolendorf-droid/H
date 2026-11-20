@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Crepuscolo — Il Bosco dei Sussurri</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Cinzel:wght@500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0b0f16;--card:#141a25;--text:#dde1e8;--muted:#8d97a8;--accent:#b3213a;--accent2:#e0a9b4;--line:#27304a;color-scheme:dark;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0b0f16;--card:#141a25;--text:#dde1e8}}
+:root[data-theme="dark"]{--bg:#0b0f16;--card:#141a25;--text:#dde1e8}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:radial-gradient(ellipse at 50% 0,#27324a 0,var(--bg) 62%) fixed;color:var(--text);font-family:"Cormorant Garamond",Georgia,serif;font-size:19px;line-height:1.7;overflow-x:hidden}
+#bar{position:fixed;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,var(--accent),var(--accent2));z-index:20;box-shadow:0 0 10px var(--accent)}
+.fog{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+.fog i{position:absolute;left:-50%;width:200%;height:40%;background:radial-gradient(ellipse,rgba(180,190,210,.12),transparent 65%);animation:drift 40s linear infinite}
+.fog i:nth-child(1){top:10%}.fog i:nth-child(2){top:45%;animation-duration:60s;animation-direction:reverse}.fog i:nth-child(3){top:70%;animation-duration:50s}
+@keyframes drift{from{transform:translateX(-10%)}to{transform:translateX(10%)}}
+.embers{position:fixed;inset:0;pointer-events:none;z-index:0}
+.embers b{position:absolute;bottom:-10px;width:3px;height:3px;border-radius:50%;background:var(--accent2);opacity:0;box-shadow:0 0 8px var(--accent);animation:rise linear infinite}
+@keyframes rise{0%{opacity:0;transform:translateY(0)}15%{opacity:.8}100%{opacity:0;transform:translateY(-105vh) translateX(30px)}}
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;display:flex;justify-content:center;gap:4px;padding:10px 8px;background:rgba(11,15,22,.85);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);overflow-x:auto}
+nav a{font-family:Cinzel,Georgia,serif;font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);text-decoration:none;padding:8px 14px;border-radius:20px;white-space:nowrap;transition:.3s}
+nav a:hover{color:#fff}nav a.on{color:#fff;background:var(--accent);box-shadow:0 0 16px rgba(179,33,58,.6)}
+.view{display:none;position:relative;z-index:1;max-width:720px;margin:0 auto;padding:28px 20px 60px}
+.view.on{display:block;animation:in .8s ease}
+@keyframes in{from{opacity:0;filter:blur(8px)}to{opacity:1;filter:none}}
+.rv{opacity:0;transform:translateY(26px);transition:opacity .9s ease,transform .9s ease}
+.rv.s{opacity:1;transform:none}
+h1,h2,h3{font-family:Cinzel,Georgia,serif;font-weight:500;letter-spacing:.06em}
+h1{font-size:clamp(36px,10vw,60px);text-align:center;margin:10px 0 6px;color:#fff;animation:glow 4s ease-in-out infinite}
+@keyframes glow{0%,100%{text-shadow:0 0 18px rgba(179,33,58,.4)}50%{text-shadow:0 0 42px rgba(179,33,58,.95),0 0 80px rgba(179,33,58,.4)}}
+.sub{text-align:center;font-style:italic;color:var(--accent2);font-size:22px;margin-bottom:28px}
+.moon{width:130px;height:130px;margin:26px auto 0;border-radius:50%;background:radial-gradient(circle at 35% 35%,#f6f1e8,#a9b1c4 70%);display:block;animation:pulse 6s ease-in-out infinite}
+@keyframes pulse{0%,100%{box-shadow:0 0 50px 8px rgba(170,178,196,.25);transform:translateY(0)}50%{box-shadow:0 0 90px 20px rgba(170,178,196,.45);transform:translateY(-8px)}}
+.forest{display:block;width:calc(100% + 40px);margin:-30px -20px 0;height:auto}
+.btn{display:inline-block;margin:6px 4px;padding:12px 26px;border:1px solid var(--accent);color:#fff;background:var(--accent);border-radius:30px;font-family:Cinzel,serif;font-size:14px;letter-spacing:.1em;text-decoration:none;transition:.3s}
+.btn:hover{transform:translateY(-3px);box-shadow:0 8px 26px rgba(179,33,58,.55)}
+.btn.o{background:none}
+.center{text-align:center}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:24px;margin:22px 0;transition:.4s}
+.card:hover{border-color:var(--accent);box-shadow:0 0 30px rgba(179,33,58,.25)}
+.portrait{width:160px;height:160px;border-radius:50%;margin:0 auto 14px;display:block;border:2px solid var(--accent);animation:pulse2 5s ease-in-out infinite}
+@keyframes pulse2{0%,100%{box-shadow:0 0 14px rgba(179,33,58,.4)}50%{box-shadow:0 0 34px rgba(179,33,58,.9)}}
+.eyes{animation:blink 6s infinite}
+@keyframes blink{0%,92%,100%{opacity:1}95%{opacity:.1}}
+dl{display:grid;grid-template-columns:auto 1fr;gap:8px 16px;margin:18px 0 0}
+dt{color:var(--accent2);font-style:italic}dd{margin:0}
+blockquote{margin:24px 0;padding-left:16px;border-left:3px solid var(--accent);color:var(--accent2);font-style:italic;font-size:21px}
+.gal{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:22px 0}
+.gal svg{width:100%;height:auto;border-radius:12px;border:1px solid var(--line);transition:.4s}
+.gal svg:hover{transform:translateY(-6px) scale(1.03);border-color:var(--accent)}
+.chap h3{color:var(--accent2);font-size:19px;margin:6px 0 6px}
+.chap .n{font-size:12px;color:var(--muted);letter-spacing:.25em;text-transform:uppercase;font-family:Cinzel,serif}
+.chap section.c{margin:40px 0;padding-left:18px;border-left:1px solid var(--line)}
+.chap section.c:first-letter{}
+.chap p.d::first-letter{float:left;font-family:Cinzel,serif;font-size:56px;line-height:.9;padding:6px 8px 0 0;color:var(--accent)}
+footer{position:relative;z-index:1;text-align:center;color:var(--muted);font-size:15px;padding:30px 20px}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}}
+
+body{padding-bottom:84px}
+.b1{--accent:#b3213a;--accent2:#e0a9b4}.b2{--accent:#4d5fd0;--accent2:#b3bcff}.b3{--accent:#e0742b;--accent2:#ffc58f}.b4{--accent:#c9a24a;--accent2:#f3dfa6}
+.bk{display:block;border:1px solid var(--line);border-radius:16px;padding:18px 20px;margin:12px 0;text-decoration:none;color:var(--text);background:linear-gradient(120deg,var(--card),rgba(0,0,0,.2));position:relative;overflow:hidden;transition:.35s}
+.bk:before{content:"";position:absolute;left:0;top:0;bottom:0;width:5px;background:var(--accent)}
+.bk:hover{transform:translateX(8px) scale(1.01);border-color:var(--accent);box-shadow:0 0 28px color-mix(in srgb,var(--accent) 50%,transparent)}
+.bk b{font-family:Cinzel,serif;letter-spacing:.08em;color:var(--accent2);display:block;font-size:18px}
+.bk span{font-size:16px;color:var(--muted)}
+.hero{border-radius:18px;padding:30px 20px;text-align:center;margin:0 0 22px;background:radial-gradient(circle at 50% 0,color-mix(in srgb,var(--accent) 45%,#0b0f16),#0b0f16 75%);border:1px solid var(--accent);box-shadow:0 0 40px color-mix(in srgb,var(--accent) 35%,transparent)}
+.hero h2{margin:6px 0;color:#fff;font-size:30px;text-shadow:0 0 22px var(--accent)}
+.hero em{color:var(--accent2);font-size:20px}
+details{background:var(--card);border:1px solid var(--line);border-radius:14px;margin:12px 0;transition:.3s;overflow:hidden}
+details[open]{border-color:var(--accent);box-shadow:0 0 22px color-mix(in srgb,var(--accent) 30%,transparent)}
+summary{cursor:pointer;padding:16px 18px;font-family:Cinzel,serif;letter-spacing:.05em;color:var(--accent2);list-style:none;display:flex;gap:12px;align-items:center}
+summary::-webkit-details-marker{display:none}
+summary i{font-style:normal;background:var(--accent);color:#fff;border-radius:50%;width:30px;height:30px;display:grid;place-items:center;font-size:13px;flex:none}
+details p{margin:0;padding:0 18px 18px;animation:in .5s ease}
+.vote{display:flex;gap:10px;margin:14px 0 8px}
+.vote button{flex:1;padding:14px;border-radius:14px;border:1px solid var(--line);background:var(--card);color:#fff;font-family:Cinzel,serif;font-size:13px;letter-spacing:.08em;cursor:pointer;transition:.3s}
+.vote button:active{transform:scale(.95)}
+.vote button.e{border-color:#b3213a}.vote button.j{border-color:#c98a3c}
+.meter{height:12px;border-radius:8px;overflow:hidden;display:flex;background:var(--line)}
+.meter i{display:block;height:100%;transition:width .6s}
+.meter .e{background:#b3213a}.meter .j{background:#c98a3c}
+#pl{position:fixed;left:0;right:0;bottom:0;z-index:30;padding:10px 12px calc(10px + env(safe-area-inset-bottom,0px));background:rgba(11,15,22,.92);backdrop-filter:blur(10px);border-top:1px solid var(--line);display:flex;align-items:center;gap:10px;flex-wrap:wrap;justify-content:center;font-size:15px}
+#pl button{width:42px;height:42px;border-radius:50%;border:0;background:var(--accent);color:#fff;font-size:16px;cursor:pointer;flex:none}
+#pl .t{font-family:Cinzel,serif;font-size:12px;letter-spacing:.08em;color:var(--accent2)}
+#pl a,#pl label{color:var(--muted);font-size:13px;text-decoration:underline;cursor:pointer}
+#pl input{display:none}
+.eq{display:flex;gap:3px;align-items:flex-end;height:18px}
+.eq u{width:3px;background:var(--accent2);height:4px}
+.playing .eq u{animation:eq .8s ease-in-out infinite}
+.eq u:nth-child(2){animation-delay:.2s}.eq u:nth-child(3){animation-delay:.4s}.eq u:nth-child(4){animation-delay:.1s}
+@keyframes eq{0%,100%{height:4px}50%{height:18px}}
+</style>
+</head>
+<body>
+<div id="bar"></div>
+<div class="fog"><i></i><i></i><i></i></div>
+<div class="embers" id="em"></div>
+<nav>
+<a href="#home" data-v="home">Inizio</a>
+<a href="#personaggio" data-v="personaggio">I Personaggi</a>
+<a href="#twilight" data-v="twilight">Twilight</a>
+<a href="#newmoon" data-v="newmoon">New Moon</a>
+<a href="#eclipse" data-v="eclipse">Eclipse</a>
+<a href="#breaking" data-v="breaking">Breaking Dawn</a>
+</nav>
+
+<main>
+<div class="view" id="home">
+<div class="moon"></div>
+<h1>Crepuscolo</h1>
+<div class="sub">Il Bosco dei Sussurri</div>
+<svg class="forest" viewBox="0 0 400 120" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg"><path fill="#06080d" d="M0 120V80l12-30 10 24 10-48 12 52 10-30 12 40 12-60 12 56 10-26 12 44 12-52 12 50 10-30 12 46 12-64 12 58 10-24 12 40 12-50 12 54 10-34 12 44 12-58 12 60 10-28 12 40 12-46 12 52 10-30 12 38 12-56 12 54 10-26 12 36V120z"/></svg>
+<p class="center rv">Dove la luce muore e la nebbia respira, un paese di montagna custodisce un segreto più antico delle sue chiese. Qui ogni tramonto è una promessa, e ogni ombra ascolta.</p>
+<blockquote class="rv">«Alcune notti non finiscono mai. Aspettano soltanto qualcuno che abbia il coraggio di restare.»</blockquote>
+<div class="center rv"><a class="btn" href="#twilight">Leggi la storia</a><a class="btn o" href="#personaggio">Incontra i personaggi</a></div>
+<h2 class="center rv" style="margin-top:40px">Tutta la saga</h2>
+<a class="bk b1 rv" href="#twilight"><b>I · Twilight</b><span>Pioggia, sguardi e un segreto a Forks</span></a>
+<a class="bk b2 rv" href="#newmoon"><b>II · New Moon</b><span>L’assenza, il lupo e la fuga a Volterra</span></a>
+<a class="bk b3 rv" href="#eclipse"><b>III · Eclipse</b><span>Una guerra e una scelta impossibile</span></a>
+<a class="bk b4 rv" href="#breaking"><b>IV · Breaking Dawn</b><span>Il matrimonio, la nascita, l’alba</span></a>
+<h2 class="center rv" style="margin-top:40px">Da che parte stai?</h2>
+<div class="vote rv"><button class="e" onclick="vt('e')">🌑 Team Edward</button><button class="j" onclick="vt('j')">🐺 Team Jacob</button></div>
+<div class="meter rv"><i class="e" id="me" style="width:50%"></i><i class="j" id="mj" style="width:50%"></i></div>
+<p class="center rv" id="vm" style="font-size:16px;color:var(--muted)">Tocca per votare</p>
+<h2 class="center rv" style="margin-top:44px">Galleria dei sussurri</h2>
+<div class="gal rv">
+<svg viewBox="0 0 100 140" xmlns="http://www.w3.org/2000/svg"><rect width="100" height="140" fill="#10172a"/><circle cx="50" cy="45" r="20" fill="#e7e1d6"/><path d="M0 140V100l10-20 10 20 10-30 10 30 10-25 10 25 10-35 10 35 10-20 10 20V140z" fill="#06080d"/></svg>
+<svg viewBox="0 0 100 140" xmlns="http://www.w3.org/2000/svg"><rect width="100" height="140" fill="#1a0f18"/><circle cx="50" cy="55" r="22" fill="#b3213a"/><path d="M0 140V105l14-30 12 30 12-40 12 40 12-30 12 30 12-36 14 36V140z" fill="#06080d"/></svg>
+<svg viewBox="0 0 100 140" xmlns="http://www.w3.org/2000/svg"><rect width="100" height="140" fill="#101c26"/><rect x="34" y="40" width="32" height="60" fill="#06080d"/><path d="M30 40l20-22 20 22z" fill="#06080d"/><rect x="44" y="55" width="12" height="16" fill="#d9a548"/><rect x="0" y="100" width="100" height="40" fill="#06080d"/></svg>
+</div>
+</div>
+
+<div class="view" id="personaggio"><h2 class="center">I Personaggi</h2><div class="card rv"><svg class="portrait" viewBox="0 0 150 150" xmlns="http://www.w3.org/2000/svg"><defs><radialGradient id="b1" cx="50%" cy="35%"><stop offset="0" stop-color="#3a4a3f"/><stop offset="1" stop-color="#0d1117"/></radialGradient></defs><rect width="150" height="150" fill="url(#b1)"/><path d="M0 150V105l14-30 12 30 12-45 12 45 12-35 13 35 13-50 13 50 12-28 12 28v40z" fill="#06080d"/><circle cx="75" cy="52" r="20" fill="#e7e1d6" opacity=".9"/><g class="eyes"><circle cx="75" cy="52" r="3" fill="#b3213a"/></g></svg><h3 class="center" style="margin:0">Bella Swan</h3><div class="center" style="color:var(--accent2);font-style:italic">La ragazza di Forks</div><dl><dt>Età</dt><dd>17 anni</dd><dt>Origine</dt><dd>Phoenix, Arizona</dd><dt>Dimora</dt><dd>Forks, nello stato di Washington</dd><dt>Dono</dt><dd>La sua mente è un mistero per tutti</dd></dl></div><p class="rv">Bella lascia il sole di Phoenix per vivere con il padre in una cittadina dove piove quasi ogni giorno. Timida, testarda e poco incline alla paura, finisce per attirare lo sguardo di chi non dovrebbe.</p><div class="card rv"><svg class="portrait" viewBox="0 0 150 150" xmlns="http://www.w3.org/2000/svg"><defs><radialGradient id="e1" cx="50%" cy="35%"><stop offset="0" stop-color="#4a3b52"/><stop offset="1" stop-color="#0d1117"/></radialGradient></defs><rect width="150" height="150" fill="url(#e1)"/><circle cx="75" cy="62" r="30" fill="#e9e4da"/><circle cx="87" cy="55" r="27" fill="#2a2236"/><path d="M45 128h60" stroke="#d9a548" stroke-width="3"/><circle cx="75" cy="112" r="4" fill="#b3213a"/></svg><h3 class="center" style="margin:0">Edward Cullen</h3><div class="center" style="color:var(--accent2);font-style:italic">Il vampiro dagli occhi d’oro</div><dl><dt>Età</dt><dd>17 anni… da oltre un secolo</dd><dt>Famiglia</dt><dd>I Cullen, vampiri che non cacciano gli uomini</dd><dt>Occhi</dt><dd>Oro; neri quando ha sete</dd><dt>Dono</dt><dd>Legge i pensieri altrui</dd></dl></div><blockquote class="rv">«Sei la mia vita, e il mio solo pericolo.»</blockquote><div class="card rv"><svg class="portrait" viewBox="0 0 150 150" xmlns="http://www.w3.org/2000/svg"><defs><radialGradient id="j1" cx="50%" cy="35%"><stop offset="0" stop-color="#4a3a2a"/><stop offset="1" stop-color="#0d1117"/></radialGradient></defs><rect width="150" height="150" fill="url(#j1)"/><g fill="#e3d6c3"><ellipse cx="75" cy="90" rx="22" ry="19"/><ellipse cx="45" cy="62" rx="9" ry="13"/><ellipse cx="65" cy="45" rx="9" ry="14"/><ellipse cx="85" cy="45" rx="9" ry="14"/><ellipse cx="105" cy="62" rx="9" ry="13"/></g><g class="eyes"><circle cx="75" cy="25" r="3" fill="#d9a548"/></g></svg><h3 class="center" style="margin:0">Jacob Black</h3><div class="center" style="color:var(--accent2);font-style:italic">Il lupo di La Push</div><dl><dt>Origine</dt><dd>Riserva di La Push</dd><dt>Legame</dt><dd>Amico d’infanzia di Bella</dd><dt>Segreto</dt><dd>Discende da una stirpe che si trasforma in lupo</dd><dt>Rivale</dt><dd>I Cullen, da sempre</dd></dl></div><p class="rv">Jacob è il calore nella notte fredda: sincero, leale, impulsivo. Il suo mondo e quello di Edward non si sono mai amati, e Bella si trova nel mezzo.</p></div><div class="view chap b1" id="twilight"><div class="hero"><em>Libro primo</em><h2>Twilight</h2></div><details class="rv" open><summary><i>1</i>La pioggia</summary><p>Bella lascia il sole di Phoenix e va a vivere a Forks con suo padre Charlie. Al liceo nota una famiglia di ragazzi bellissimi, pallidi e silenziosi.</p></details><details class="rv"><summary><i>2</i>Lo sguardo</summary><p>Edward Cullen all’inizio la evita quasi con rabbia, poi la salva da un incidente con una forza impossibile. Bella comincia a farsi domande.</p></details><details class="rv"><summary><i>3</i>Il segreto</summary><p>Con le leggende di La Push, raccontate da Jacob, Bella arriva alla verità: i Cullen sono vampiri che hanno scelto di non nutrirsi di sangue umano.</p></details><details class="rv"><summary><i>4</i>La caccia</summary><p>Il vampiro nomade James decide che Bella sarà la sua preda. I Cullen la nascondono, ma lui la attira lontano da Forks con un inganno.</p></details><details class="rv"><summary><i>5</i>La scelta</summary><p>Edward arriva in tempo e la salva. Tornati a casa, ballano insieme al ballo di fine anno, sapendo che il loro amore non sarà mai semplice.</p></details><blockquote class="rv">«Il crepuscolo non è la fine del giorno. È il momento in cui due mondi si toccano.»</blockquote></div><div class="view chap b2" id="newmoon"><div class="hero"><em>Libro secondo</em><h2>New Moon</h2></div><details class="rv" open><summary><i>1</i>Il compleanno</summary><p>Per i diciotto anni di Bella, un piccolo taglio alla festa fa perdere il controllo a Jasper. Edward capisce che stare con lei la mette in pericolo.</p></details><details class="rv"><summary><i>2</i>L’addio</summary><p>I Cullen lasciano Forks. Edward dice a Bella che non la ama più e sparisce, lasciandola in un silenzio che dura mesi.</p></details><details class="rv"><summary><i>3</i>Il lupo</summary><p>Bella trova conforto in Jacob. Quando lui si allontana all’improvviso, scopre il suo segreto: è uno dei lupi della riserva di La Push.</p></details><details class="rv"><summary><i>4</i>Volterra</summary><p>Per un equivoco Edward la crede morta e corre in Italia dai Volturi, i sovrani dei vampiri. Bella e Alice volano a Volterra per fermarlo.</p></details><details class="rv"><summary><i>5</i>Il patto</summary><p>Riescono a salvarlo. I Volturi lasciano andare Bella, ma pretendono che un giorno diventi una di loro.</p></details><blockquote class="rv">«Anche la notte più nera ha una luna che aspetta.»</blockquote></div><div class="view chap b3" id="eclipse"><div class="hero"><em>Libro terzo</em><h2>Eclipse</h2></div><details class="rv" open><summary><i>1</i>L’ombra di Victoria</summary><p>Una serie di sparizioni a Seattle fa capire ai Cullen che qualcuno sta creando un esercito di giovani vampiri. Dietro c’è Victoria, in cerca di vendetta.</p></details><details class="rv"><summary><i>2</i>Due cuori</summary><p>Bella è divisa tra l’amore per Edward e il legame con Jacob. Edward le chiede di sposarlo, mentre Jacob le dice di non voler rinunciare a lei.</p></details><details class="rv"><summary><i>3</i>L’alleanza</summary><p>Per difendere Bella, vampiri e lupi, nemici da sempre, mettono da parte l’odio e si preparano insieme allo scontro.</p></details><details class="rv"><summary><i>4</i>La battaglia</summary><p>Gli ospiti indesiderati vengono sconfitti sulle montagne. Victoria arriva fino a Bella, ma Edward la ferma per sempre.</p></details><details class="rv"><summary><i>5</i>Il sì</summary><p>Con il pericolo passato, Bella capisce cosa vuole davvero. Accetta la proposta di Edward e fa la sua scelta.</p></details><blockquote class="rv">«Tra due mondi non si sceglie senza perdere qualcosa.»</blockquote></div><div class="view chap b4" id="breaking"><div class="hero"><em>Libro quarto</em><h2>Breaking Dawn</h2></div><details class="rv" open><summary><i>1</i>Le nozze</summary><p>Bella ed Edward si sposano in una cerimonia tra gli alberi. Jacob, ferito, se ne va senza salutare.</p></details><details class="rv"><summary><i>2</i>L’isola</summary><p>In luna di miele su un’isola, Bella scopre di aspettare un figlio. La gravidanza corre troppo in fretta e la mette in pericolo.</p></details><details class="rv"><summary><i>3</i>La nascita</summary><p>Jacob torna a proteggerla. La piccola Renesmee nasce e Bella, sul punto di morire, viene salvata dalla trasformazione in vampira.</p></details><details class="rv"><summary><i>4</i>I Volturi</summary><p>Un equivoco fa credere ai Volturi che Renesmee sia una minaccia. I Cullen riuniscono testimoni da ogni parte del mondo.</p></details><details class="rv"><summary><i>5</i>L’alba</summary><p>Davanti alla radura innevata, la verità viene alla luce e lo scontro si ferma. Per la famiglia Cullen comincia un’eternità in pace.</p></details><blockquote class="rv">«Ogni fine è soltanto l’inizio di un’alba.»</blockquote></div></main>
+
+<div id="pl"><button id="pb" aria-label="Play">▶</button><div class="eq"><u></u><u></u><u></u><u></u></div><span class="t">Shiva · Non lo sai</span><label>Carica il brano<input type="file" accept="audio/*" id="pf"></label><a href="https://open.spotify.com/search/Shiva%20Non%20lo%20sai" target="_blank" rel="noopener">Spotify</a><a href="https://www.youtube.com/results?search_query=Shiva+Non+lo+sai" target="_blank" rel="noopener">YouTube</a><audio id="au" loop></audio></div>
+<script>
+var vE=0,vJ=0;
+function vt(k){if(k==='e')vE++;else vJ++;var t=vE+vJ;document.getElementById('me').style.width=(vE/t*100)+'%';document.getElementById('mj').style.width=(vJ/t*100)+'%';document.getElementById('vm').textContent='Edward '+vE+' · Jacob '+vJ;}
+(function(){var au=document.getElementById('au'),pb=document.getElementById('pb'),pl=document.getElementById('pl');
+document.getElementById('pf').addEventListener('change',function(e){var f=e.target.files[0];if(!f)return;au.src=URL.createObjectURL(f);au.play().catch(function(){});});
+pb.addEventListener('click',function(){if(!au.src){document.getElementById('pf').click();return}au.paused?au.play():au.pause();});
+au.addEventListener('play',function(){pb.textContent='❚❚';pl.classList.add('playing')});
+au.addEventListener('pause',function(){pb.textContent='▶';pl.classList.remove('playing')});})();
+</script>
+<footer>Fan site non ufficiale. «Twilight» e i suoi personaggi appartengono ai rispettivi titolari dei diritti.</footer>
+
+<script>
+(function(){
+var views=['home','personaggio','twilight','newmoon','eclipse','breaking'],io;
+function observe(){
+if(io)io.disconnect();
+io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('s');io.unobserve(e.target)}})},{threshold:.15});
+document.querySelectorAll('.view.on .rv').forEach(function(el,i){el.classList.remove('s');el.style.transitionDelay=(i%3)*.12+'s';io.observe(el)});
+}
+function show(){
+var h=(location.hash||'').replace('#','');
+if(views.indexOf(h)<0)h='home';
+views.forEach(function(v){document.getElementById(v).classList.toggle('on',v===h)});
+document.querySelectorAll('nav a').forEach(function(a){a.classList.toggle('on',a.dataset.v===h)});
+window.scrollTo(0,0);observe();
+}
+window.addEventListener('hashchange',show);
+window.addEventListener('scroll',function(){
+var d=document.documentElement,m=d.scrollHeight-d.clientHeight;
+document.getElementById('bar').style.width=(m>0?d.scrollTop/m*100:0)+'%';
+},{passive:true});
+var em=document.getElementById('em');
+for(var i=0;i<18;i++){var b=document.createElement('b');b.style.left=Math.random()*100+'%';b.style.animationDuration=(9+Math.random()*10)+'s';b.style.animationDelay=(Math.random()*10)+'s';em.appendChild(b)}
+show();
+})();
+</script>
+</body>
+</html>
